@@ -8,7 +8,7 @@ import java.util.List;
 
 import static java.util.Collections.emptyList;
 
-class Account {
+public class Account {
   private final ArrayList<Operation> operations;
 
   Account() {

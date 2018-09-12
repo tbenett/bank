@@ -23,4 +23,17 @@ class AccountTest {
     assertThat(operations.size()).isEqualTo(1);
     assertThat(operations.get(0)).isEqualTo(deposit);
   }
+
+  @Test
+  void make_a_withdrawal_is_adding_a_withdrawal_operation() {
+    var withdrawal = new Withdrawal(TODAY, 100);
+    var account = new Account();
+
+    account.withdraw(100);
+
+    final List<Operation> operations = account.operations();
+
+    assertThat(operations.size()).isEqualTo(1);
+    assertThat(operations.get(0)).isEqualTo(withdrawal);
+  }
 }

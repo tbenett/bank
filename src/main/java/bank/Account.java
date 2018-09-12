@@ -19,6 +19,10 @@ class Account {
     operations.add(new Deposit(LocalDate.now(), amount));
   }
 
+  public void withdraw(int amount) {
+    operations.add(new Withdrawal(LocalDate.now(), amount));
+  }
+
   public List<Operation> operations() {
     return operations;
   }

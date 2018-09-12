@@ -36,4 +36,23 @@ class AccountTest {
     assertThat(operations.size()).isEqualTo(1);
     assertThat(operations.get(0)).isEqualTo(withdrawal);
   }
+
+  @Test
+  void many_operations_can_be_added_to_account() {
+    final var depositOf10 = new Deposit(TODAY, 10);
+    final var withdrawalOf100 = new Withdrawal(TODAY, 100);
+    final var depositOf1000 = new Deposit(TODAY, 1000);
+    final var account = new Account();
+
+    account.deposit(10);
+    account.withdraw(100);
+    account.deposit(1000);
+
+    final var operations = account.operations();
+
+    assertThat(operations.size()).isEqualTo(3);
+    assertThat(operations.get(0)).isEqualTo(depositOf10);
+    assertThat(operations.get(1)).isEqualTo(withdrawalOf100);
+    assertThat(operations.get(2)).isEqualTo(depositOf1000);
+  }
 }

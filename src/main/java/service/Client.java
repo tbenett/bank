@@ -12,4 +12,8 @@ class Client {
   public void saveMoney(int amount) {
     account.deposit(amount);
   }
+
+  public void retrieveMoney(int amount) {
+    account.withdraw(amount);
+  }
 }

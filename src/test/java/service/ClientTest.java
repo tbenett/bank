@@ -22,4 +22,14 @@ class ClientTest {
 
     verify(account).deposit(amount);
   }
+
+  @Test
+  void it_can_retrieve_his_money() {
+    var amount = 100;
+    var client = new Client(account);
+
+    client.retrieveMoney(amount);
+
+    verify(account).withdraw(amount);
+  }
 }

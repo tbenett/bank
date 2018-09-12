@@ -16,4 +16,21 @@ class Client {
   public void retrieveMoney(int amount) {
     account.withdraw(amount);
   }
+
+  public String check_operations() {
+    String operations = "date,amount,balance\n";
+
+    int balance = 0;
+
+    for (var operation : account.operations()) {
+      balance += operation.amount();
+
+      operations += operation.date().toString()
+          + "," + String.valueOf(operation.amount())
+          + "," + String.valueOf(balance)
+          + "\n";
+    }
+
+    return operations;
+  }
 }

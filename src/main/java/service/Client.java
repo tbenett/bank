@@ -2,8 +2,12 @@ package service;
 
 import bank.Account;
 
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.Collectors;
+
 class Client {
   private final Account account;
+  public static final String HEADER = "date,amount,balance\n";
 
   public Client(Account account) {
     this.account = account;
@@ -18,19 +22,16 @@ class Client {
   }
 
   public String check_operations() {
-    String operations = "date,amount,balance\n";
+    AtomicInteger balance = new AtomicInteger();
 
-    int balance = 0;
-
-    for (var operation : account.operations()) {
-      balance += operation.amount();
-
-      operations += operation.date().toString()
-          + "," + String.valueOf(operation.amount())
-          + "," + String.valueOf(balance)
-          + "\n";
-    }
-
-    return operations;
+    return HEADER + account.operations()
+        .stream()
+        .map(operation ->
+            operation.date().toString()
+                + "," + String.valueOf(operation.amount())
+                + "," + String.valueOf(balance.addAndGet(operation.amount()))
+                + "\n"
+        ).collect(Collectors.joining());
   }
+
 }

@@ -16,14 +16,18 @@ public class Account {
   }
 
   public void deposit(int amount) {
-    operations.add(new Deposit(LocalDate.now(), amount));
+    operations.add(new Deposit(now(), amount));
   }
 
   public void withdraw(int amount) {
-    operations.add(new Withdrawal(LocalDate.now(), amount));
+    operations.add(new Withdrawal(now(), amount));
   }
 
   public List<Operation> operations() {
     return operations;
+  }
+
+  protected LocalDate now() {
+    return LocalDate.now();
   }
 }

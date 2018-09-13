@@ -23,7 +23,7 @@ class ClientTest {
   private Account account;
 
   private Client client;
-  public static final LocalDate TODAY = LocalDate.now();
+  public static final LocalDate A_DATE = LocalDate.of(1974, 1, 1);
 
 
   @BeforeEach
@@ -57,16 +57,16 @@ class ClientTest {
 
     when(account.operations()).thenReturn(
         List.<Operation>of(
-            new Deposit(TODAY, 100),
-            new Withdrawal(TODAY, 58),
-            new Deposit(TODAY, 1295)
+            new Deposit(A_DATE, 100),
+            new Withdrawal(A_DATE, 58),
+            new Deposit(A_DATE, 1295)
         )
     );
     assertThat(client.check_operations()).isEqualTo(
         "date,amount,balance\n"
-            + TODAY.toString() + "," + "100" + "," + "100" + "\n"
-            + TODAY.toString() + "," + "-58" + "," + "42" + "\n"
-            + TODAY.toString() + "," + "1295" + "," + "1337" + "\n"
+            + A_DATE.toString() + "," + "100" + "," + "100" + "\n"
+            + A_DATE.toString() + "," + "-58" + "," + "42" + "\n"
+            + A_DATE.toString() + "," + "1295" + "," + "1337" + "\n"
     );
   }
 }

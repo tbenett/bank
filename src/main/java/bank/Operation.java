@@ -28,4 +28,12 @@ public abstract class Operation {
   public int hashCode() {
     return Objects.hash(amount, date);
   }
+
+  @Override
+  public String toString() {
+    return "Operation{" +
+        "amount=" + amount +
+        ", date=" + date +
+        '}';
+  }
 }
